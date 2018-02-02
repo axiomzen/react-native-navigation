@@ -5,9 +5,9 @@ import PropRegistry from './PropRegistry';
 
 const NativeReactModule = NativeModules.NavigationReactModule;
 
-function startApp(activityParams) {
+async function startApp(activityParams) {
   savePassProps(activityParams);
-  NativeReactModule.startApp(activityParams);
+  return await NativeReactModule.startApp(activityParams);
 }
 
 function push(screenParams) {
@@ -189,6 +189,10 @@ async function getCurrentlyVisibleScreenId() {
   return await NativeReactModule.getCurrentlyVisibleScreenId();
 }
 
+async function getLaunchArgs() {
+  return await NativeReactModule.getLaunchArgs();
+}
+
 module.exports = {
   startApp,
   push,
@@ -225,5 +229,6 @@ module.exports = {
   setScreenStyle,
   isAppLaunched,
   isRootLaunched,
-  getCurrentlyVisibleScreenId
+  getCurrentlyVisibleScreenId,
+  getLaunchArgs
 };
